@@ -3,7 +3,9 @@ It uses the snapshot function of Motion.
 Place something like this into the motion.conf file:
 
 target_dir /root/bilder
+
 snapshot_interval 300
+
 snapshot_filename /log/cam%t%H%M%S-snapshot
 
 The program has two components:
