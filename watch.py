@@ -6,7 +6,7 @@ from threading import Thread
 ############ anpassen
 UDP_IP = "192.168.1.100"
 UDP_PORT = 8989
-alarmzeit=2000
+alarmzeit=1200
 ## wenn in motion.py 1800 steht
 alarmscript='/home/kl/s2.sh'
 ##################
@@ -36,14 +36,17 @@ def sleeper1():
          start2 = str(time.ctime(start))
          meldung1=str(meldung)
          meldung2=str(time.ctime(meldung))
-         print "Hier Start: "+start1+ "  " + start2
-         print "Von IP102   "+meldung1 + "  "+ meldung2
+         print "Local:   "+start1+ "  " + start2
+         print "IP102   "+meldung1 + "  "+ meldung2
          zeit = meldung - start
          print "Zeit "+str(zeit)
          Empfang=False
          start=time.time()
       else:
-	   if start - meldung > alarmzeit:
+           start=time.time()
+	   zeit2 =  start - meldung
+           print "Zeit2 "+str(zeit2)
+	   if  zeit2 > alarmzeit:
 	     print "Alarm"
 	     output = subprocess.Popen([alarmscript,''],shell=True)  
              # Hier wird das "Alarm" Shellscript aufgerufen
